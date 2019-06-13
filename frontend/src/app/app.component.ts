@@ -7,5 +7,4 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
 }
