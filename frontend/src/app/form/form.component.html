@@ -6,12 +6,27 @@
 
       <div class="form-group">
         <label for="name">Name : </label>
-        <!--Each input element has an id property that is used by the label element's for attribute to match the label to its input control.-->
-        <!--If the name attribute is omitted, the data of that input field will not be sent at all.-->
-        <!--Defining a name attribute is a requirement when using [(ngModel)] in combination with a form.-->
-        <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" appForbiddenName="bob" required
-               minlength="4" appForbiddenName="bob">
-        <div [hidden]="name.valid || name.pristine"> Name is required</div>
+        <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" appForbiddenName="bob" required minlength="4" appForbiddenName="bob">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Surname : </label>
+        <input type="text" id="surname" name="surname" [(ngModel)]="user.surname" #surname="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Login : </label>
+        <input type="text" id="login" name="login" [(ngModel)]="user.login" #login="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Password : </label>
+        <input type="text" id="password" name="password" [(ngModel)]="user.password" #password="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Email : </label>
+        <input type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel">
       </div>
 
       <div class="form-group">
@@ -21,11 +36,12 @@
         </select>
       </div>
 
+      <!-- todo add error message with required input fileds to complete in case user didn't touched form -->
+      <!-- todo mark next to input fields the ones which are obligtory to fill-->
       <button type="submit" [disabled]="!userForm.form.valid">Submit</button>
 
     </fieldset>
   </form>
-  <div> User info: {{str()}}</div>
 </div>
 
 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
@@ -40,3 +56,17 @@
     Name cannot be Bob.
   </div>
 </div>
+
+<div class="container" [hidden]="!submitted">
+  <div> Name: {{user.name}}</div>
+  <div> Surname: {{user.surname}}</div>
+  <div> Login: {{user.sex}}</div>
+  <div> Password: {{user.sex}}</div>
+  <div> Email: {{user.sex}}</div>
+  <div> Sex: {{user.sex}}</div>
+  <button (click)="toggle()"> Go back</button>
+</div>
+
+<!--Each input element has an id property that is used by the label element's for attribute to match the label to its input control.-->
+<!--If the name attribute is omitted, the data of that input field will not be sent at all.-->
+<!--Defining a name attribute is a requirement when using [(ngModel)] in combination with a form.-->
