@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component} from '@angular/core';
 import {User} from "../User";
 
 @Component({
@@ -12,8 +12,17 @@ export class FormComponent {
   sex = ['Male', 'Female'];
 
   // todo add autogenerate id
-  user = new User(1,'');
+  user = new User(1, 'Henry');
 
+ str() {
+   return JSON.stringify(this.user);
+ }
+
+ submitted = false;
+
+ toggle() {
+   this.submitted = !this.submitted;
+ }
   /*
 Name: characters only, max number - 20
 Surname: chars only , 20 max
