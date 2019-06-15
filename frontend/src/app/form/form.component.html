@@ -10,7 +10,7 @@
         <!--If the name attribute is omitted, the data of that input field will not be sent at all.-->
         <!--Defining a name attribute is a requirement when using [(ngModel)] in combination with a form.-->
         <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" appForbiddenName="bob" required
-               minlength="4">
+               minlength="4" appForbiddenName="bob">
         <div [hidden]="name.valid || name.pristine"> Name is required</div>
       </div>
 
@@ -35,5 +35,8 @@
   </div>
   <div *ngIf="name.errors?.minlength">
     Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors?.forbiddenName">
+    Name cannot be Bob.
   </div>
 </div>
