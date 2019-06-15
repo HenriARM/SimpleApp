@@ -1,14 +1,17 @@
 <div class="container" [hidden]="submitted">
-  <form  (ngSubmit)="toggle()" #userForm="ngForm">
+  <form (ngSubmit)="toggle()" #userForm="ngForm">
     <fieldset>
+
       <legend>Log in to access Blog</legend>
+
       <div class="form-group">
         <label for="name">Name : </label>
         <!--Each input element has an id property that is used by the label element's for attribute to match the label to its input control.-->
         <!--If the name attribute is omitted, the data of that input field will not be sent at all.-->
         <!--Defining a name attribute is a requirement when using [(ngModel)] in combination with a form.-->
-        <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" required>
-        <div [hidden]="name.valid || name.pristine"> Name is required </div>
+        <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" appForbiddenName="bob" required
+               minlength="4">
+        <div [hidden]="name.valid || name.pristine"> Name is required</div>
       </div>
 
       <div class="form-group">
@@ -17,18 +20,20 @@
           <option *ngFor="let s of sex" [value]="s">{{s}}</option>
         </select>
       </div>
-      <button type="submit" [disabled]="!userForm.form.valid" >Submit</button>
+
+      <button type="submit" [disabled]="!userForm.form.valid">Submit</button>
+
     </fieldset>
   </form>
   <div> User info: {{str()}}</div>
 </div>
 
-
-<div [hidden]="!submitted">
-  <h2>You submitted the following:</h2>
-  <div class="row">
-    <div class="col-xs-3">Name</div>
-    <div class="col-xs-9">{{ user.name }}</div>
+<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+  <!-- todo check object errors of name-->
+  <div *ngIf="name.errors?.required">
+    Name is required.
   </div>
-  <button class="btn btn-primary" (click)="toggle()">Edit</button>
+  <div *ngIf="name.errors?.minlength">
+    Name must be at least 4 characters long.
+  </div>
 </div>
