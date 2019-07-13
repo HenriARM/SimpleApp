@@ -1,2 +1,1 @@
-# Blog
-Simple Blog web application
+# Simple Blog web application
