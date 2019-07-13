@@ -1,23 +1,58 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.6.RELEASE'
-	id 'java'
+//plugins {
+//	id 'org.springframework.boot' version '2.1.6.RELEASE'
+//	id 'java'
+//}
+//
+//apply plugin: 'io.spring.dependency-management'
+//
+//group = 'com.example'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+//
+//repositories {
+//	mavenCentral()
+//}
+//
+//dependencies {
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	runtimeOnly 'mysql:mysql-connector-java'
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	testImplementation 'org.springframework.security:spring-security-test'
+//}
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+        // todo read about plugin: https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
+	}
 }
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+bootJar {
+	baseName = 'gs-accessing-data-mysql'
+	version =  '0.1.0'
+}
 
 repositories {
 	mavenCentral()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'mysql:mysql-connector-java'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
