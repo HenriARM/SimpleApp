@@ -18,9 +18,8 @@ public class UserController {
 
     @GetMapping(path = "/add")
     public @ResponseBody String addNewUser(@RequestParam String name, @RequestParam String email) {
-        User user = new User();
+        User user = new User(name,email);
         user.setName(name);
-        user.setEmail(email);
         userRepository.save(user);
         return "Saved";
     }
