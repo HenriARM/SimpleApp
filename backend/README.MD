@@ -19,3 +19,14 @@ mysql> grant all on db_example.* to 'springuser'@'%'; -- Gives all the privilege
 It is good security practice that after your database is in 
 production state, you make this none and revoke all privileges from the MySQL 
 user connected to the Spring application, then give him only SELECT, UPDATE, INSERT, DELETE.
+
+# Lombok
+* Enable `Annotation Processing` on IntelliJ IDEA
+```
+> Settings > Build, Execution, Deployment > Compiler > Annotation Processors
+```
+* add the `Lombok IntelliJ plugin` 
+    * Go to `Preferences`  > `Plugins`
+    * Click on `Browse repositories`
+    * Search and install `Lombok Plugin`, then restart IntelliJ IDEA
+```
